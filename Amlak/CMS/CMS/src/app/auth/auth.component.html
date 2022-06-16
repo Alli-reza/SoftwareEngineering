@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLoginClick()">
+    <div class="auth-content">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>پنل مدیریت املاک دایان</mat-card-title>
+                <mat-card-subtitle>فقط مدیر سایت میتواند وارد شود</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="flex-center flex-col">
+                    <mat-form-field appearance="fill">
+                        <mat-label>نام کاربری</mat-label>
+                        <input type="text" autocomplete="off" required matInput [formControl]="username">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>کلمه عبور</mat-label>
+                        <input type="password" autocomplete="off" required matInput [formControl]="password">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button type="submit" mat-flat-button [disabled]="!loginForm.valid || loader" color="primary">
+                    <div class="flex-center">
+                        <mat-spinner *ngIf="loader" [diameter]="24"></mat-spinner>
+                        <span>ورود</span>
+                    </div>
+                </button>
+                <button type="button" mat-flat-button (click)="goToURL()">برگشت</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</form>

@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./app/shared/styles/color.scss";
+@import "./app/shared/styles/theme.scss";
+@import url("./assets/bootstrap-grid.min.css");
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.section {
+  margin: 1.4rem 0;
+}
+
+.action-btns {
+  button {
+    width: 6rem;
+  }
+}
+
+.control-content {
+  @extend .flex-center, .flex-wrap;
+
+  align-items: center;
+
+  mat-checkbox {
+    margin: 0 2.4rem;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  color: purple !important;
+}
+
+h4 {
+  margin-bottom: 0 !important;
+}
+
+.header-title {
+  font-weight: 600 !important;
+  margin: 0 1rem !important;
+  padding: 1rem;
+  font-size: 1.2rem !important;
+}
+
+.section-sep {
+  width: 98%;
+  margin: auto !important;
+}
+
+.danger-text {
+  color: red;
+  font-weight: 700 !important;
+  padding: 0 2rem;
+}
+
+mat-card-content {
+  padding: 0 !important;
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
+}

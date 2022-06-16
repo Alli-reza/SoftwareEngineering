@@ -1,0 +1,19 @@
+mat-card {
+  width: 16rem;
+  height: 27rem;
+
+  img {
+    height: 18rem;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.card-banner {
+  height: 8rem;
+  width: 90%;
+  
+  h2, h3 {
+    text-align: center;
+  }
+}

@@ -1,0 +1,38 @@
+<mat-toolbar *ngIf="authService.getLoggedIn" color="primary">
+    <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>پنل مدیریت</span>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer #drawer mode="over">
+        <ul class="nav-items-list">
+            <li>
+                <a [routerLink]="'/dashboard'" (click)="drawer.toggle()">داشبورد</a>
+            </li>
+            <mat-divider></mat-divider>
+            <li>
+                <a [routerLink]="'/customers'" (click)="drawer.toggle()">مشتری ها</a>
+            </li>
+            <li>
+                <a [routerLink]="'/contracts'" (click)="drawer.toggle()">قرارداد ها</a>
+            </li>
+            <li>
+                <a [routerLink]="'/estates'" (click)="drawer.toggle()">ملک ها</a>
+            </li>
+            <mat-divider></mat-divider>
+            <li>
+                <a [routerLink]="'/my-estate'" (click)="drawer.toggle()">املاک من</a>
+            </li>
+            <li>
+                <a [routerLink]="'/about-us'" (click)="drawer.toggle()">درباره ما</a>
+            </li>
+            <mat-divider></mat-divider>
+            <li>
+                <a (click)="logout(); drawer.toggle()">خروج</a>
+            </li>
+        </ul>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

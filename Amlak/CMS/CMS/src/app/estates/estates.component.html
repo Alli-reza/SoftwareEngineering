@@ -1,0 +1,112 @@
+<div *ngIf="mainLoader" class="full-width flex-center p-4">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!mainLoader">
+    <h3 class="header-title">ملک ها</h3>
+
+    <div class="row px-4">
+        <div class="col-12">
+            <div class="full-width flex-between m-2">
+                <div class="table-controls">
+                    <button color="primary" mat-flat-button type="button" [disabled]="loadUpdate"
+                        [routerLink]="'/estates/0'">
+                        <mat-icon aria-hidden="false" aria-label="Edit item">add</mat-icon>
+                        <span>ساخت ملک</span>
+                    </button>
+                </div>
+                <div *ngIf="loadUpdate" class="flex-center">
+                    <mat-spinner [diameter]="20"></mat-spinner>
+                    <span class="sp-title">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+
+            <div class="mat-elevation-z8">
+                <table class="full-width" #table mat-table [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="estateType">
+                        <th class="h-start" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span class="px-2">نوع ملک</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="px-2">{{ helper.estateTypeView(element.estateType) }}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sellingPrice">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>قیمت فروش</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{element?.contract?.sellingPrice ?? 'مشخص نیست'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="mortgageAmount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>مبلغ رهن</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{element?.contract?.mortgageAmount ?? 'مشخص نیست'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amountBeforePay">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>پول پیش</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{element?.contract?.amountBeforePay ?? 'مشخص نیست'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sizeOfBuilding">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>اندازه سازه</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{element?.contract?.sizeOfBuilding ?? 'مشخص نیست'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="activate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>فعالیت حساب</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon *ngIf="element.activate">check</mat-icon>
+                            <mat-icon *ngIf="!element.activate">close</mat-icon>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>عملیات</span>
+                        </th>
+                        <td class="actions" mat-cell *matCellDef="let element">
+                            <span>
+                                <button type="button" mat-icon-button [routerLink]="'/estates/' + element.id">
+                                    <mat-icon aria-hidden="false" aria-label="Edit item">edit</mat-icon>
+                                </button>
+                                <button type="button" mat-icon-button (click)="removeItem(element)">
+                                    <mat-icon aria-hidden="false" aria-label="Remove item">delete</mat-icon>
+                                </button>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator #paginator [pageIndex]="collection.pageNumber" [pageSize]="collection.take"
+                    [pageSizeOptions]="[10, 20, 50, 100]" [length]="pageItemsLength * collection.take" showFirstLastButtons
+                    (page)="changePage($event)" [disabled]="false">
+                </mat-paginator>
+            </div>
+
+        </div>
+    </div>
+</ng-container>

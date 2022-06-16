@@ -1,0 +1,93 @@
+<div class="data-content">
+    <mat-card class="example-card">
+        <mat-card-content>
+            <div class="flex-center flex-col">
+                <h3 class="title">به پنل مدیریت خوش آمدید</h3>
+                <p class="description">تمامی حقوق این پنل متعلق به سایت می باشد<a
+                        href="http://45.82.139.102:666"><i>املاک دایان</i></a></p>
+                <div *ngIf="mainLoader" class="full-width flex-center p-4">
+                    <mat-spinner [diameter]="50"></mat-spinner>
+                </div>
+                <ng-container *ngIf="!mainLoader">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100% !important;">
+
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+    
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="fullName">
+                            <th mat-header-cell *matHeaderCellDef> نام </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                        </ng-container>
+    
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="phoneNumber">
+                            <th mat-header-cell *matHeaderCellDef> شماره همراه </th>
+                            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="createdDate">
+                            <th mat-header-cell *matHeaderCellDef> تاریخ ثبت </th>
+                            <td mat-cell *matCellDef="let element"> {{element.createdDate | jalali}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="sellingPrice">
+                            <th mat-header-cell *matHeaderCellDef> قیمت فروش </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sellingPrice}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="loanAmount">
+                            <th mat-header-cell *matHeaderCellDef> مبلغ وام </th>
+                            <td mat-cell *matCellDef="let element"> {{element.loanAmount}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="mortgageAmount">
+                            <th mat-header-cell *matHeaderCellDef> مبلغ رهن </th>
+                            <td mat-cell *matCellDef="let element"> {{element.mortgageAmount}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="amountBeforePay">
+                            <th mat-header-cell *matHeaderCellDef> مبلغ پیش </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amountBeforePay}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="sizeOfBuilding">
+                            <th mat-header-cell *matHeaderCellDef> اندازه سازه </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sizeOfBuilding}} </td>
+                        </ng-container>
+    
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="address">
+                            <th mat-header-cell *matHeaderCellDef> آدرس </th>
+                            <td mat-cell *matCellDef="let element"> {{element.address | cutter: 20}} </td>
+                        </ng-container>
+    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+    
+                    <div class="full-width counter-content flex-center p-4">
+                        <div class="m-4">
+                            <span>{{ counters.countAllCustomers }}</span>
+                            <p>تعداد مشتری ها</p>
+                        </div>
+                        <div class="m-4">
+                            <span>{{ counters.countAllContracts }}</span>
+                            <p>تعداد قرارداد ها</p>
+                        </div>
+                        <div class="m-4">
+                            <span>{{ counters.countAllEstate }}</span>
+                            <p>تعداد ملک ها</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

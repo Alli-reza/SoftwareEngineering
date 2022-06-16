@@ -1,0 +1,141 @@
+@import "./color.scss";
+
+mat-card {
+  mat-card-header {
+    mat-card-title {
+      margin-bottom: 16px !important;
+    }
+  }
+
+  mat-card-content {
+    padding-top: 1.2rem;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+button[type=submit] {
+  .flex-center span {
+    margin-inline-start: 8px;
+  }
+}
+
+mat-form-field {
+  width: 100% !important;
+}
+
+mat-drawer-container {
+  overflow: hidden;
+  height: 100% !important;
+}
+
+mat-drawer {
+  width: 12rem;
+  padding: 1rem;
+}
+
+mat-divider {
+  margin-bottom: 1rem !important;
+}
+
+.nav-items-list {
+  padding-inline-start: 0.6rem;
+
+  li {
+    font-size: 1.2rem;
+
+    a {
+      padding-bottom: 1rem;
+      transition: color 0.3s;
+    }
+  }
+}
+
+.data-content {
+  @extend .flex-center;
+
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  align-items: flex-start !important;
+  padding-bottom: 4rem;
+
+  mat-card {
+    max-width: 80%;
+    border: none;
+    margin-top: 2rem;
+
+    .title {
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .description {
+      font-size: 1rem;
+      display: flex;
+
+      a {
+        margin: 0 8px;
+      }
+    }
+
+    .add-btn {
+      margin-bottom: 1rem;
+      margin-inline-end: 1rem;
+    }
+  }
+
+  .card-fields {
+    width: 100vw;
+
+    mat-card-actions {
+      padding: 2rem 0.8rem;
+
+      button {
+        margin-inline-start: 0.7rem;
+        margin-inline-end: 0.2rem;
+      }
+    }
+
+    mat-form-field {
+      width: 30rem;
+
+      mat-toolbar {
+        background-color: unset !important;
+
+        button {
+          width: 12rem;
+        }
+      }
+    }
+
+    mat-card-content {
+      quill-editor-cs {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .table-card {
+    width: 100%;
+    height: 80%;
+    overflow-y: auto;
+
+    table {
+      width: 100%;
+    }
+  }
+}
+
+.upload-file {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+}

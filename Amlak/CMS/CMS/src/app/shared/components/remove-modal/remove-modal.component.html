@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>حذف {{data.name}}</h1>
+<div mat-dialog-content>
+    <p>آیا مایل به حذف این آیتم هستید ؟</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button class="prm-btn" (click)="onNoClick()">خیر</button>
+    <button mat-button class="dng-btn" [mat-dialog-close]="'yes'" cdkFocusInitial>بله</button>
+</div>

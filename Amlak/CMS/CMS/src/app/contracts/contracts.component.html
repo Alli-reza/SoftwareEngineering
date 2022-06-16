@@ -1,0 +1,94 @@
+<div *ngIf="mainLoader" class="full-width flex-center p-4">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!mainLoader">
+    <h3 class="header-title">قرار داد ها</h3>
+
+    <div class="row px-4 mb-5 pb-5">
+        <div class="col-12">
+            <div class="full-width flex-between m-2">
+                <div class="table-controls">
+                    <button color="primary" mat-flat-button type="button" [disabled]="loadUpdate"
+                        [routerLink]="'/contracts/0'">
+                        <mat-icon aria-hidden="false" aria-label="Edit item">add</mat-icon>
+                        <span>ساخت قرارداد</span>
+                    </button>
+                </div>
+                <div *ngIf="loadUpdate" class="flex-center">
+                    <mat-spinner [diameter]="20"></mat-spinner>
+                    <span class="sp-title">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+
+            <div class="mat-elevation-z8">
+                <table class="full-width" #table mat-table [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="customerName">
+                        <th class="h-start" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span class="px-2">نام مشتری</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="px-2">{{element?.customer?.fullName}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="documentType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>نوع سند</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span>{{ helper.documentTypeView(element.documentType) }}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="createdDate">
+                        <th class="h-start" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span class="px-2">تاریخ ثبت</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="px-2">{{element.createdDate | jalali}}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="activate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>فعالیت قرارداد</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon *ngIf="element.activate">check</mat-icon>
+                            <mat-icon *ngIf="!element.activate">close</mat-icon>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <span>عملیات</span>
+                        </th>
+                        <td class="actions" mat-cell *matCellDef="let element">
+                            <span>
+                                <button type="button" mat-icon-button [routerLink]="'/contracts/' + element.id">
+                                    <mat-icon aria-hidden="false" aria-label="Edit item">remove_red_eye</mat-icon>
+                                </button>
+                                <button type="button" mat-icon-button (click)="removeItem(element)">
+                                    <mat-icon aria-hidden="false" aria-label="Remove item">delete</mat-icon>
+                                </button>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator #paginator [pageIndex]="collection.pageNumber" [pageSize]="collection.take"
+                    [pageSizeOptions]="[10, 20, 50, 100]" [length]="pageItemsLength * collection.take"
+                    showFirstLastButtons (page)="changePage($event)" [disabled]="false">
+                </mat-paginator>
+            </div>
+
+        </div>
+    </div>
+</ng-container>
